@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Users</title>
+    </head>
+    <body>
+        <table border="1">
+            <tr>
+                <th>ID</th>
+                <th>Age</th>
+                <th>Name</th>
+        {% for item in items %}
+            <tr>
+                <td>{{item["user_id"]}}</td>
+                <td>{{item["user_age"]}}</td>
+                <td>{{item["user_name"]}}</td>
+            <tr>
+        {% endfor %}
+        </table>
+        {% if status == "add" %}
+            <p style="color:red">data:add</p>
+        {% elif status == "update" %}
+            <p style="color:red">data:update</p>
+        {% elif status == "delete" %}
+            <p style="color:red">data:delete</p>
+        {% endif %}
+
+        <h2> AddData </h2>
+        <form action="/create_item" method="post">
+            Id : <input type="number" name="user_id" required>
+            Age : <input type="number" name="user_age" required>
+            Name : <input type="text" name="user_name" required>
+            <input type="submit" value="Add Data">
+        </form>
+        <h2> UpdateData </h2>
+        <form action="/update_item" method="post">
+            Id : <input type="number" name="user_id" required>
+            Age : <input type="number" name="user_age" required>
+            Name : <input type="text" name="user_name" required>
+            <input type="submit" value="Update Data">
+        </form>
+        <h2> DeleteData </h2>
+        <form action="/delete_item" method="post">
+            Id : <input type="number" name="user_id" required>
+            <input type="submit" value="Delete Data">
+        </form>
+    </body>
+</html>
